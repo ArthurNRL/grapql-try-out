@@ -1,0 +1,36 @@
+type Query {
+  getCustomers: [customers]
+  getOrders: [orders]
+  getOrderProducts(id: ID!): orders
+}
+
+type customers {
+  id: ID!
+  first_name: String!
+  last_name: String!
+  email: String!
+  birthdate: date!
+  address: String!
+  orders: [orders!]
+}
+
+type orders {
+  id: ID!
+  customer: customers!
+  date: date!
+  finished: Boolean!
+  products: [products!]!
+}
+
+type products {
+  id: ID!
+  price: Float!
+  name: String!
+  description: String!
+}
+
+scalar date
+
+type Mutation {
+  post(url: String!, description: String!): String!
+}
